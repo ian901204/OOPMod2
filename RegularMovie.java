@@ -2,18 +2,29 @@ public class RegularMovie extends Movie {
     public RegularMovie(String title) {
         super(title);
     }
-
+    
     @Override
-    public double calculateRentalCost(int daysRented) {
-        double cost = 2.0;
+    public double getPrice(int daysRented) {
+        double price = 2;  // 舊片: $2 可以租兩天
         if (daysRented > 2) {
-            cost += (daysRented - 2) * 1.5;
+            price += (daysRented - 2) * 1.5;  // 每多一天加 $1.5
         }
-        return cost;
+        return price;
     }
-
+    
     @Override
-    public int calculateFrequentRenterPoints(int daysRented) {
-        return 1;
+    public double getPoints() {
+        return 1.0;  // 舊片每租一片可獲得 1.0 常客積點
+    }
+    
+    @Override
+    public Movie changeType() {
+        // 舊片不會再變化類型
+        return this;
+    }
+    
+    @Override
+    public String toString() {
+        return "舊片: " + getTitle();
     }
 }
